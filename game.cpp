@@ -25,15 +25,21 @@ int Game::scoreGame()
     // 10 scores per game
     for(int frame = 0; frame < 10; frame++)
     {
-        if(isSpare(rollNum)) // spare
+        if(rolls[frame] == 10) //strike
+        {
+            score += rolls[frame] + rolls[frame +1] + rolls[frame + 2];
+            frame++;
+        }
+        else if(isSpare(rollNum)) // spare
         {
             score += 10 + rolls[rollNum + 2];
         }
         else {
             score += rolls[rollNum] + rolls[rollNum + 1];
+            rollNum += 2;
         }
         // Scoring per game
-        rollNum += 2;
+
     }
     return score;
 }
@@ -41,4 +47,9 @@ int Game::scoreGame()
 bool Game::isSpare(int frameIndex)
 {
     return rolls[frameIndex] + rolls[frameIndex + 1] == 10; // spare
+}
+
+Game::Game() {
+    currentRoll = 0;
+    rolls.fill(0);
 }

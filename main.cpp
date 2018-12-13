@@ -56,3 +56,20 @@ TEST_CASE("One Spare Game Returns Correct Value","[score]")
     // Assert
     REQUIRE(16 == g.scoreGame());
 }
+
+TEST_CASE("One strike, 3 and 4. Return 24","[score]")
+{
+    // Arrange
+    Game g;
+    int pins = 0;
+    // Act
+    g.roll(10);
+    g.roll(3);  // spare
+    g.roll(4);
+    for(int frame = 0; frame < 17; frame++)
+    {
+        g.roll(pins);
+    }
+    // Assert
+    REQUIRE(24 == g.scoreGame());
+}

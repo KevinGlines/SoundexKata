@@ -11,10 +11,13 @@ class Game {
     int currentRoll = 0;
     std::array<int, 21> rolls;   // one per roll
 
+
+
 public:
     void roll(int frame);
     int scoreGame();
     bool isSpare(int frameIndex);
+    Game(); // Default Constructor
 };
 
 
